@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Pirasapi
 {
-    public class GameManager : MonoBehaviour
+    public class GameManager : MonoSingleton<GameManager>
     {
     }
 }
