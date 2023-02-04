@@ -9,5 +9,6 @@ namespace Pirasapi
         public new string name;
         public Sprite graphics;
         [TextArea(3, 10)] public List<string> speeches;
+        public Monologue nextMonologue;
     }
 }

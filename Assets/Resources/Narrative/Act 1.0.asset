@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: Act 1.0
   m_EditorClassIdentifier: 
   name: Beginning
-  graphics: {fileID: 21300000, guid: 7f18e0539d35e4f418cc08b1dd4a8c92, type: 3}
+  graphics: {fileID: 21300000, guid: e2b47627f04d1ab41b19806a1f7205fc, type: 3}
   speeches:
-  - Unlike all the other individual water drops, Celine was not happy with her life
-    at all.
+  - "Unlike all the other individual water drops, Bubl\xE9 was not happy with her
+    life at all."
   - For sure, being amongst those boring, stupid water drops should not have been
     the meaning of her life.
   - Something felt so unconfortable, something didn't fit...
+  nextMonologue: {fileID: 11400000, guid: e24b1dc99106b4fcbaa93035d09fb7aa, type: 2}

@@ -223,7 +223,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
+  m_EffectColor: {r: 0.18431373, g: 0.21960784, b: 0.30980393, a: 1}
   m_EffectDistance: {x: 2, y: -2}
   m_UseGraphicAlpha: 1
 --- !u!114 &5648712630390265758
@@ -238,7 +238,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfabb0440166ab443bba8876756fdfa9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.2784314}
+  m_EffectColor: {r: 0.18431373, g: 0.21960784, b: 0.30980393, a: 0.2784314}
   m_EffectDistance: {x: 8, y: -8}
   m_UseGraphicAlpha: 1
 --- !u!1 &5648712630677866767
@@ -300,7 +300,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.5019608}
+  m_Color: {r: 0.18431373, g: 0.21960784, b: 0.30980393, a: 0.5019608}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -393,8 +393,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4283381807
+  m_fontColor: {r: 0.18356177, g: 0.2178384, b: 0.31132078, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -528,8 +528,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4283381807
+  m_fontColor: {r: 0.18356177, g: 0.2178384, b: 0.31132078, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -817,7 +817,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
+  m_EffectColor: {r: 0.18431373, g: 0.21960784, b: 0.30980393, a: 1}
   m_EffectDistance: {x: 2, y: -2}
   m_UseGraphicAlpha: 1
 --- !u!114 &5648712631864431076
@@ -832,7 +832,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfabb0440166ab443bba8876756fdfa9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.2784314}
+  m_EffectColor: {r: 0.18431373, g: 0.21960784, b: 0.30980393, a: 0.2784314}
   m_EffectDistance: {x: 8, y: -8}
   m_UseGraphicAlpha: 1
 --- !u!1 &5648712631938401070
@@ -900,8 +900,8 @@ MonoBehaviour:
   monologueTitle: {fileID: 5648712631711756079}
   progressParent: {fileID: 5648712631802810107}
   progressDotPrefab: {fileID: 4204845051377806409, guid: 578466510e7d8447eba71ff4fe042cd1, type: 3}
-  currentDotColor: {r: 1, g: 1, b: 1, a: 1}
-  defaultDotColor: {r: 0, g: 0, b: 0, a: 1}
+  currentDotColor: {r: 1, g: 0.9411765, b: 0.9411765, a: 1}
+  defaultDotColor: {r: 0.18431373, g: 0.21960784, b: 0.30980393, a: 1}
 --- !u!222 &5648712631938401073
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -923,7 +923,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0.9411765, b: 0.9411765, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

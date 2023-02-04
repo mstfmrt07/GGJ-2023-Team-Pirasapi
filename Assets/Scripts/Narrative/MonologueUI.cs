@@ -17,13 +17,25 @@ namespace Pirasapi
         public Color currentDotColor;
         public Color defaultDotColor;
 
+        public Action OnMonologueEnded;
+        
         private Monologue monologue;
         private int currentSpeechIndex;
 
-        public void SetMonologoue(Monologue monologue)
+        private void Awake()
         {
             canvasGroup.alpha = 0f;
-            canvasGroup.DOFade(1f, 1f).SetEase(Ease.InBack);
+            canvasGroup.interactable = false;
+        }
+
+        public void SetMonologoue(Monologue monologue)
+        {
+            if (this.monologue == null || this.monologue.nextMonologue == null || monologue != this.monologue.nextMonologue)
+            {
+                canvasGroup.alpha = 0f;
+                canvasGroup.DOFade(1f, 1f).SetEase(Ease.InBack);
+                canvasGroup.interactable = true;
+            }
             
             this.monologue = monologue;
             currentSpeechIndex = -1;
@@ -46,13 +58,14 @@ namespace Pirasapi
             }
             else
             {
-                SkipMonologue();
+                OnMonologueEnded?.Invoke();
             }
         }
 
         public void SkipMonologue()
         {
             canvasGroup.DOFade(0f, 1f).SetEase(Ease.OutBack).OnComplete(() => enabled = false);
+            canvasGroup.interactable = false;
         }
 
         public void PreviousSpeech()
@@ -81,18 +94,18 @@ namespace Pirasapi
                 DoText(monologueTitle, monologue.name);
             }
             
-            DoText(monologueText, monologue.speeches[currentSpeechIndex], delay: 0.8f);
+            DoText(monologueText, monologue.speeches[currentSpeechIndex], delay: (currentSpeechIndex == 0)? 0.8f : 0.2f);
             
             for (int i = 0; i < progressParent.childCount; i++)
             {
                 bool isCurrent = (i == currentSpeechIndex);
                 
                 progressParent.GetChild(i).GetComponent<Image>().color = isCurrent ? currentDotColor : defaultDotColor;
-                progressParent.GetChild(i).localScale = isCurrent ? (Vector3.one * 1.2f) : Vector3.one;
+                progressParent.GetChild(i).localScale = isCurrent ? (Vector3.one * 1.12f) : Vector3.one;
             }
         }
 
-        private void DoText(TMP_Text text, string content, float characterAppearDuration = 0.04f, float delay = 0.0f)
+        private void DoText(TMP_Text text, string content, float characterAppearDuration = 0.036f, float delay = 0.0f)
         {
             DOTween.Kill(text.GetInstanceID());
             text.text = "";
