@@ -7,17 +7,25 @@ namespace Pirasapi
     {
         public Player mainBody;
         public Rigidbody2D rb2D;
+        [SerializeField]private Collider2D groundCheckCollider;
+        [SerializeField] private LayerMask groundLayer;
         
         [SerializeField] private float movementSpeed;
         [SerializeField] private float jumpForce;
 
         private bool facingRight;
-        private bool isJumping;
+        private bool isGrounded;
 
         private void Awake()
         {
             facingRight = true;
-            isJumping = false;
+            isGrounded = false;
+        }
+
+        private void FixedUpdate()
+        {
+            Move();
+            Jump();
         }
 
 
@@ -48,7 +56,20 @@ namespace Pirasapi
 
         public void Jump()
         {
+            var input = InputController.Instance.JumpInput;
+            isGrounded = GroundCheck();
+            if (!input || !isGrounded)
+                return;
             rb2D.AddForce(Vector2.up * jumpForce);
         }
+
+
+        public bool GroundCheck()
+        {
+            RaycastHit2D hit = Physics2D.Raycast(groundCheckCollider.bounds.center, Vector2.down,
+                groundCheckCollider.bounds.extents.y + 0.01f, groundLayer);
+            return hit.collider != null;
+        }
+        
     }
 }
