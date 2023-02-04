@@ -6,19 +6,25 @@ namespace Pirasapi
     {
         public Animator animator;
 
-        public void Move()
+        public void StartMove()
         {
-            animator.SetBool("Move", true);
+            animator.SetBool("IsRunning", true);
         }
         
         public void StopMove()
         {
-            animator.SetBool("Move", false);
+            animator.SetBool("IsRunning", false);
         }
 
+        public bool IsGrounded
+        {
+            get => animator.GetBool("IsGrounded");
+            set => animator.SetBool("IsGrounded", value);
+        }
+        
         public void Jump()
         {
-            
+            animator.SetTrigger("Jump");
         }
     }
 }

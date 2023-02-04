@@ -6,10 +6,9 @@ namespace Pirasapi
     {
         public PlayerMovement movement;
         public GameObject graphics;
+        
+        private bool isDead;
+        public bool IsDead => isDead;
 
-        public void Jump()
-        {
-            movement.Jump();
-        }
     }
 }

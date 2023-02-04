@@ -1,75 +1,98 @@
-using System;
+using System.Collections;
 using UnityEngine;
 
 namespace Pirasapi
 {
-    public class PlayerMovement : MonoBehaviour
+
+public class PlayerMovement : MonoBehaviour
+{
+    [Header("References")]
+    public Player player;
+    public CharacterAnimator animator;
+    public Rigidbody2D rb2D;
+    public Transform groundCheck;
+    
+    [Header("Movement & Jump")]
+    public float movementSpeed;
+    public float jumpForce;
+    public float checkRadius;
+    public LayerMask whatIsGround;
+    public float onAirGravityFactor;
+    public float groundGravityFactor;
+
+    private float xInput;
+    private bool facingRight = true;
+    private bool isGrounded;
+
+    private void Update()
     {
-        public Player mainBody;
-        public Rigidbody2D rb2D;
-        [SerializeField]private Collider2D groundCheckCollider;
-        [SerializeField] private LayerMask groundLayer;
-        
-        [SerializeField] private float movementSpeed;
-        [SerializeField] private float jumpForce;
-
-        private bool facingRight;
-        private bool isGrounded;
-
-        private void Awake()
+        if (!player.IsDead)
         {
-            facingRight = true;
-            isGrounded = false;
-        }
 
-        private void FixedUpdate()
-        {
-            Move();
-            Jump();
-        }
-
-
-        public void Move()
-        {
-            var input = InputController.Instance.MovementInput;
-            if (input == 0f)
-                return;
-
-            var wantsToTurnRight = (input > 0f && !facingRight);
-            var wantsToTurnLeft = (input < 0f && facingRight);
-            if (wantsToTurnLeft || wantsToTurnRight)
+            //Input and Animations
+            xInput = InputController.Instance.MovementInput;
+            if (xInput != 0)
             {
-                InvertX();
+                animator.StartMove();
+            }
+            else
+            {
+                animator.StopMove();
             }
 
-            rb2D.velocity = (facingRight ? Vector2.right : Vector2.left) * movementSpeed;
+            animator.IsGrounded = isGrounded;
+
+            if ((facingRight && xInput < 0) || (!facingRight && xInput > 0))
+            {
+                Flip();
+            }
+
+            if (InputController.Instance.JumpPressed)
+            {
+                if (isGrounded)
+                {
+                    Jump();
+                }
+            }
+
+            if (InputController.Instance.JumpReleased && rb2D.velocity.y > 0f && !isGrounded)
+            {
+                rb2D.velocity = new Vector2(rb2D.velocity.x, rb2D.velocity.y * 0.5f);
+            }
         }
-
-        public void InvertX()
-        {
-            var scale = mainBody.graphics.transform.localScale;
-            scale.x *= -1;
-            mainBody.graphics.transform.localScale = scale;
-
-            facingRight = !facingRight;
-        }
-
-        public void Jump()
-        {
-            var input = InputController.Instance.JumpInput;
-            isGrounded = GroundCheck();
-            if (!input || !isGrounded)
-                return;
-            rb2D.AddForce(Vector2.up * jumpForce);
-        }
-
-
-        public bool GroundCheck()
-        {
-            RaycastHit2D hit = Physics2D.Raycast(groundCheckCollider.bounds.center, Vector2.down,
-                groundCheckCollider.bounds.extents.y + 0.01f, groundLayer);
-            return hit.collider != null;
-        }
-        
     }
+    private void FixedUpdate()
+    {
+        if (!player.IsDead)
+        {
+            Move();
+        }
+        else
+        {
+            rb2D.velocity = new Vector2(rb2D.velocity.x, 0f);
+        }
+
+        isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, whatIsGround);
+    }
+
+    void Flip()
+    {
+        var scale = player.transform.localScale;
+        scale.x *= -1;
+        player.transform.localScale = scale;
+
+        facingRight = !facingRight;
+    }
+
+    void Jump()
+    {
+        rb2D.velocity = new Vector2(rb2D.velocity.x, jumpForce);
+        animator.Jump();
+    }
+
+    void Move()
+    {
+        rb2D.velocity = new Vector2(xInput * movementSpeed, rb2D.velocity.y);
+    }
+}
 }
