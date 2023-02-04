@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -23,6 +24,7 @@ public class PlayerMovement : MonoBehaviour
     private float xInput;
     private bool facingRight = true;
     private bool isGrounded;
+    private bool isJumping = false;
 
     private void Update()
     {
@@ -33,14 +35,14 @@ public class PlayerMovement : MonoBehaviour
             xInput = InputController.Instance.MovementInput;
             if (xInput != 0)
             {
+                Debug.Log("started moving");
                 animator.StartMove();
             }
             else
             {
+                Debug.Log("started moving");
                 animator.StopMove();
             }
-
-            animator.IsGrounded = isGrounded;
 
             if ((facingRight && xInput < 0) || (!facingRight && xInput > 0))
             {
@@ -63,16 +65,20 @@ public class PlayerMovement : MonoBehaviour
     }
     private void FixedUpdate()
     {
+        Debug.Log(isJumping);
         if (!player.IsDead)
         {
             Move();
         }
-        else
-        {
-            rb2D.velocity = new Vector2(rb2D.velocity.x, 0f);
-        }
 
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, whatIsGround);
+        
+        //Character has just landed
+        if (isGrounded && isJumping && rb2D.velocity.y < 0f)
+        {
+            isJumping = false;
+            animator.Fall();
+        }
     }
 
     void Flip()
@@ -86,6 +92,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Jump()
     {
+        isJumping = true;
         rb2D.velocity = new Vector2(rb2D.velocity.x, jumpForce);
         animator.Jump();
     }
@@ -93,6 +100,11 @@ public class PlayerMovement : MonoBehaviour
     void Move()
     {
         rb2D.velocity = new Vector2(xInput * movementSpeed, rb2D.velocity.y);
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawWireSphere(groundCheck.position, checkRadius);
     }
 }
 }

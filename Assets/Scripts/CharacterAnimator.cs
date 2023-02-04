@@ -16,15 +16,14 @@ namespace Pirasapi
             animator.SetBool("IsRunning", false);
         }
 
-        public bool IsGrounded
-        {
-            get => animator.GetBool("IsGrounded");
-            set => animator.SetBool("IsGrounded", value);
-        }
-        
         public void Jump()
         {
+            animator.ResetTrigger("Landed");
             animator.SetTrigger("Jump");
+        }
+        public void Fall()
+        {
+            animator.SetTrigger("Landed");
         }
     }
 }
