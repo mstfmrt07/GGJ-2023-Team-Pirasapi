@@ -12,6 +12,7 @@ public class PlayerMovement : MonoBehaviour
     public CharacterAnimator animator;
     public Rigidbody2D rb2D;
     public Transform groundCheck;
+    public ParticleSystem splashParticle;
     
     [Header("Movement & Jump")]
     public float movementSpeed;
@@ -35,12 +36,10 @@ public class PlayerMovement : MonoBehaviour
             xInput = InputController.Instance.MovementInput;
             if (xInput != 0)
             {
-                Debug.Log("started moving");
                 animator.StartMove();
             }
             else
             {
-                Debug.Log("started moving");
                 animator.StopMove();
             }
 
@@ -65,7 +64,6 @@ public class PlayerMovement : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        Debug.Log(isJumping);
         if (!player.IsDead)
         {
             Move();
@@ -74,10 +72,10 @@ public class PlayerMovement : MonoBehaviour
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, whatIsGround);
         
         //Character has just landed
-        if (isGrounded && isJumping && rb2D.velocity.y < 0f)
+        if (isGrounded && rb2D.velocity.y < 0f)
         {
-            isJumping = false;
             animator.Fall();
+            splashParticle.Play();
         }
     }
 
