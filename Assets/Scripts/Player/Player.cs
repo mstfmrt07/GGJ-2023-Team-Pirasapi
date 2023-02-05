@@ -34,6 +34,13 @@ namespace Pirasapi
             mainBody.DOScale(playerSize, 0.25f).SetEase(Ease.OutBack);
         }
 
+        public void SlicePlayer()
+        {
+            size -= 1;
+            playerSize = Vector3.one * (size / initialSize);
+            mainBody.DOScale(playerSize, 0.25f).SetEase(Ease.OutBack);
+        }
+
         public void SubscribeGameEvents()
         {
             GameEvents.OnLevelLoad += OnLevelLoad;

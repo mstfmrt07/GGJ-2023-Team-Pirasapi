@@ -12,14 +12,5 @@ namespace Pirasapi
         
         }
 
-        // Update is called once per frame
-        void Update()
-        {
-            if (InputController.Instance.SliceAbilityInput)
-            {
-                sliceAbility.Perform();
-            }
-            
-        }
     }
 }

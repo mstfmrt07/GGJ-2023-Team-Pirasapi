@@ -372,8 +372,8 @@ MonoBehaviour:
   - {fileID: 4629758294955244231}
   - {fileID: 4674413507692914956}
   m_Bounds:
-    m_Center: {x: 0.02925539, y: -0.00095772743, z: 0}
-    m_Extent: {x: 2.8791053, y: 3.14444, z: 0}
+    m_Center: {x: 0.029255629, y: -0.00095772743, z: 0}
+    m_Extent: {x: 2.8791056, y: 3.14444, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
   m_AutoRebind: 0
@@ -702,11 +702,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 2828858365641105146}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 45f580af5a394901bea13645949cdb48, type: 3}
+  m_Script: {fileID: 11500000, guid: bc16f5ca963d941c6acbe257589d6249, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _size: {x: 0, y: 0, z: 0}
-  _speed: 0
+  _speed: 5
   _rb2D: {fileID: 2828858365641105149}
   _collider2D: {fileID: 2828858365641105148}
 --- !u!114 &6752872353647557084
@@ -721,8 +721,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74ead1cbe50b4ab4a11425f370c740e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movement: {fileID: 0}
-  graphics: {fileID: 0}
+  mainBody: {fileID: 2828858365641105151}
+  movement: {fileID: 2828858366815913393}
+  graphics: {fileID: 2018356244096966304}
+  initialSize: 10
 --- !u!1 &2828858366815913407
 GameObject:
   m_ObjectHideFlags: 0
