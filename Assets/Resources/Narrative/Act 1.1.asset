@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5efdc70bacf4f9d8726bae9d57c4b87, type: 3}
   m_Name: Act 1.1
   m_EditorClassIdentifier: 
-  name: A New Journey Begins
-  graphics: {fileID: 21300000, guid: 029f005d8b06f834fa06df50fc4e7dba, type: 3}
+  name: The Great Green Ground
+  graphics: {fileID: 21300000, guid: 023b224d504a946d2a7ed1efd4706943, type: 3}
   speeches:
-  - "To find the purpose of her life, Bubl\xE9 decided to set sail to a new adventure."
-  - She started to swim to reach the shore...
+  - "A myth was about to change bubl\xE9\u2019s life. "
+  - This new craving to find the tree of life; the great green ground.
   nextMonologue: {fileID: 0}

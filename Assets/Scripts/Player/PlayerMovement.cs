@@ -25,6 +25,7 @@ public class PlayerMovement : Activatable
     private float xInput;
     private bool facingRight = true;
     private bool isGrounded;
+    private bool isJumping = false;
 
     protected override void Tick()
     {
@@ -46,10 +47,9 @@ public class PlayerMovement : Activatable
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, whatIsGround);
         
         //Character has just landed
-        if (isGrounded && rb2D.velocity.y < 0f)
+        if (isGrounded && rb2D.velocity.y < 0f && isJumping)
         {
-            animator.Fall();
-            splashParticle.Play();
+            LandOnGround();
         }
         
         if ((facingRight && xInput < 0) || (!facingRight && xInput > 0))
@@ -71,6 +71,14 @@ public class PlayerMovement : Activatable
         }
     }
 
+    private void LandOnGround()
+    {
+        isJumping = false;
+        animator.Fall();
+        splashParticle.Play();
+        SoundManager.Instance.PlaySound(SoundManager.Instance.landing);
+    }
+
     void Flip()
     {
         var scale = player.graphics.transform.localScale;
@@ -82,7 +90,9 @@ public class PlayerMovement : Activatable
 
     void Jump()
     {
+        isJumping = true;
         rb2D.velocity = new Vector2(rb2D.velocity.x, jumpForce);
+        SoundManager.Instance.PlaySound(SoundManager.Instance.jumping);
         animator.Jump();
     }
 

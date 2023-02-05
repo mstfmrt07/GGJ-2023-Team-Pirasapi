@@ -107,6 +107,8 @@ namespace Pirasapi
 
         private void DoText(TMP_Text text, string content, float characterAppearDuration = 0.036f, float delay = 0.0f)
         {
+            SoundManager.Instance.PlaySound(SoundManager.Instance.typeWriter, true,
+                content.Length * characterAppearDuration * 1.5f);
             DOTween.Kill(text.GetInstanceID());
             text.text = "";
             text.DOText(content, content.Length * characterAppearDuration).SetDelay(delay).SetId(text.GetInstanceID());

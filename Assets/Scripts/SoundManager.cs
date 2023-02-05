@@ -9,6 +9,9 @@ namespace Pirasapi
         public AudioClip buttonClick;
         public AudioClip success;
         public AudioClip fail;
+        public AudioClip jumping;
+        public AudioClip landing;
+        public AudioClip typeWriter;
 
 
         private AudioSource bgSource;
@@ -16,8 +19,8 @@ namespace Pirasapi
         private void Awake()
         {
             SubscribeGameEvents();
-            //bgSource = PlaySound(bgMusic, true);
-            //bgSource.volume = 0.5f;
+            bgSource = PlaySound(bgMusic, true);
+            bgSource.volume = 0.5f;
         }
 
         public void SubscribeGameEvents()

@@ -21,6 +21,7 @@ namespace Pirasapi
                 return;
 
             isGameStarted = true;
+            LevelManager.Instance.CurrentLevel.PlayIntro();
             GameEvents.OnLevelStarted?.Invoke();
         }
 

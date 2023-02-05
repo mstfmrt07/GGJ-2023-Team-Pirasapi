@@ -12,12 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5efdc70bacf4f9d8726bae9d57c4b87, type: 3}
   m_Name: Act 1.0
   m_EditorClassIdentifier: 
-  name: Beginning
+  name: A New Purpose
   graphics: {fileID: 21300000, guid: e2b47627f04d1ab41b19806a1f7205fc, type: 3}
   speeches:
-  - "Unlike all the other individual water drops, Bubl\xE9 was not happy with her
-    life at all."
-  - For sure, being amongst those boring, stupid water drops should not have been
-    the meaning of her life.
-  - Something felt so uncomfortable, something didn't fit...
+  - "One particular bubl\xE9 feeling lost among other bubl\xE9s."
   nextMonologue: {fileID: 11400000, guid: e24b1dc99106b4fcbaa93035d09fb7aa, type: 2}
