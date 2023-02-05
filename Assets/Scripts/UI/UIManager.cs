@@ -28,6 +28,9 @@ namespace Pirasapi
             GameEvents.OnLevelStarted += OnLevelStarted;
             GameEvents.OnLevelCompleted += OnLevelCompleted;
             GameEvents.OnLevelFailed += OnLevelFailed;
+            
+            GameEvents.OnGamePaused += OnGamePaused;
+            GameEvents.OnGameResumed += OnGameResumed;
         }
 
         public void SwitchScreen(UIScreen Screen)
@@ -100,6 +103,14 @@ namespace Pirasapi
         public void OnLevelFailed()
         {
             StartCoroutine(SwitchScreenAfterSeconds(loseScreen, loseScreenDelay));
+        }
+
+        public void OnGamePaused()
+        {
+        }
+
+        public void OnGameResumed()
+        {
         }
     }
 }
