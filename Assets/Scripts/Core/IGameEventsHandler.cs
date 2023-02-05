@@ -5,4 +5,7 @@ public interface IGameEventsHandler
     void OnLevelStarted();
     void OnLevelCompleted();
     void OnLevelFailed();
+
+    void OnGamePaused();
+    void OnGameResumed();
 }

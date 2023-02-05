@@ -1,3 +1,5 @@
+using UnityEngine;
+
 namespace Pirasapi
 {
     public class GameManager : MonoSingleton<GameManager>, IResettable
@@ -19,7 +21,6 @@ namespace Pirasapi
                 return;
 
             isGameStarted = true;
-            InputController.Instance.tapToStart.OnTap -= StartGame;
             GameEvents.OnLevelStarted?.Invoke();
         }
 
@@ -45,17 +46,18 @@ namespace Pirasapi
             isGameStarted = false;
             score = 0;
 
-            InputController.Instance.tapToStart.OnTap += StartGame;
         }
 
         public void PauseGame()
         {
             //TODO: Implement pause game
+            GameEvents.OnGamePaused?.Invoke();
         }
 
         public void ResumeGame()
         {
             //TODO: Implement resume game
+            GameEvents.OnGameResumed?.Invoke();
         }
     }
 }

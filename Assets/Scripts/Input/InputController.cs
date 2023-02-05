@@ -4,7 +4,6 @@ namespace Pirasapi
 {
     public class InputController : MonoSingleton<InputController>
     {
-        public TapDetector tapToStart;
         public float MovementInput => Input.GetAxis("Horizontal");
         public bool JumpPressed => Input.GetButtonDown("Jump");
         public bool JumpReleased => Input.GetButtonUp("Jump");
@@ -25,12 +24,10 @@ namespace Pirasapi
         }
         public void OnLevelLoad()
         {
-            tapToStart.IsActive = true;
         }
 
         public void OnLevelStarted()
         {
-            tapToStart.IsActive = false;
         }
 
         public void OnLevelCompleted()

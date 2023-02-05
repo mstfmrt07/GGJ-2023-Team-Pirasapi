@@ -9,5 +9,7 @@ namespace Pirasapi
         public static Action OnLevelCompleted;
         public static Action OnLevelFailed;
 
+        public static Action OnGamePaused;
+        public static Action OnGameResumed;
     }
 }
