@@ -424,8 +424,8 @@ MonoBehaviour:
   - {fileID: 4629758294955244231}
   - {fileID: 4674413507692914956}
   m_Bounds:
-    m_Center: {x: 0.029255629, y: -0.00095772743, z: 0}
-    m_Extent: {x: 2.8791056, y: 3.14444, z: 0}
+    m_Center: {x: 0.02925539, y: -0.00095772743, z: 0}
+    m_Extent: {x: 2.8791053, y: 3.14444, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
   m_AutoRebind: 0
@@ -807,7 +807,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   activateAtAwake: 0
-  player: {fileID: 2828858365641105137}
+  graphics: {fileID: 2018356244096966304}
   animator: {fileID: 2018356244096966307}
   rb2D: {fileID: 2828858365641105149}
   groundCheck: {fileID: 2699389125308645214}

@@ -7,8 +7,8 @@ namespace Pirasapi
 
 public class PlayerMovement : Activatable
 {
-    [Header("References")]
-    public Player player;
+    [Header("References")] 
+    public GameObject graphics;
     public CharacterAnimator animator;
     public Rigidbody2D rb2D;
     public Transform groundCheck;
@@ -29,9 +29,6 @@ public class PlayerMovement : Activatable
 
     protected override void Tick()
     {
-        if (player.IsDead)
-            return;
-        
         xInput = InputController.Instance.MovementInput;
         if (xInput != 0)
         {
@@ -81,9 +78,9 @@ public class PlayerMovement : Activatable
 
     void Flip()
     {
-        var scale = player.graphics.transform.localScale;
+        var scale = graphics.transform.localScale;
         scale.x *= -1;
-        player.graphics.transform.localScale = scale;
+        graphics.transform.localScale = scale;
 
         facingRight = !facingRight;
     }
