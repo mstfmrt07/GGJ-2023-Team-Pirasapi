@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Pirasapi
 {
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : Activatable
 {
     [Header("References")]
     public Player player;
@@ -26,47 +26,22 @@ public class PlayerMovement : MonoBehaviour
     private bool facingRight = true;
     private bool isGrounded;
 
-    private void Update()
+    protected override void Tick()
     {
-        if (!player.IsDead)
+        if (player.IsDead)
+            return;
+        
+        xInput = InputController.Instance.MovementInput;
+        if (xInput != 0)
         {
-
-            //Input and Animations
-            xInput = InputController.Instance.MovementInput;
-            if (xInput != 0)
-            {
-                animator.StartMove();
-            }
-            else
-            {
-                animator.StopMove();
-            }
-
-            if ((facingRight && xInput < 0) || (!facingRight && xInput > 0))
-            {
-                Flip();
-            }
-
-            if (InputController.Instance.JumpPressed)
-            {
-                if (isGrounded)
-                {
-                    Jump();
-                }
-            }
-
-            if (InputController.Instance.JumpReleased && rb2D.velocity.y > 0f && !isGrounded)
-            {
-                rb2D.velocity = new Vector2(rb2D.velocity.x, rb2D.velocity.y * 0.5f);
-            }
+            animator.StartMove();
         }
-    }
-    private void FixedUpdate()
-    {
-        if (!player.IsDead)
+        else
         {
-            Move();
+            animator.StopMove();
         }
+
+        Move();
 
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, whatIsGround);
         
@@ -76,13 +51,31 @@ public class PlayerMovement : MonoBehaviour
             animator.Fall();
             splashParticle.Play();
         }
+        
+        if ((facingRight && xInput < 0) || (!facingRight && xInput > 0))
+        {
+            Flip();
+        }
+
+        if (InputController.Instance.JumpPressed)
+        {
+            if (isGrounded)
+            {
+                Jump();
+            }
+        }
+
+        if (InputController.Instance.JumpReleased && rb2D.velocity.y > 0f && !isGrounded)
+        {
+            rb2D.velocity = new Vector2(rb2D.velocity.x, rb2D.velocity.y * 0.5f);
+        }
     }
 
     void Flip()
     {
-        var scale = player.transform.localScale;
+        var scale = player.graphics.transform.localScale;
         scale.x *= -1;
-        player.transform.localScale = scale;
+        player.graphics.transform.localScale = scale;
 
         facingRight = !facingRight;
     }
