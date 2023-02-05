@@ -34,7 +34,7 @@ namespace Pirasapi
             }
 
             currentLevel = Instantiate(levels[CurrentLevelIndex], levelContainer);
-            //GameEvents.OnLevelLoad?.Invoke();
+            GameEvents.OnLevelLoad?.Invoke();
         }
 
         public void LoadCurrentLevel()

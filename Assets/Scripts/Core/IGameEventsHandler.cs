@@ -5,7 +5,4 @@ public interface IGameEventsHandler
     void OnLevelStarted();
     void OnLevelCompleted();
     void OnLevelFailed();
-    void OnMiniGameStarted();
-
-    void OnMiniGameEnded();
 }

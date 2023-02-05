@@ -25,7 +25,6 @@ public class PlayerMovement : MonoBehaviour
     private float xInput;
     private bool facingRight = true;
     private bool isGrounded;
-    private bool isJumping = false;
 
     private void Update()
     {
@@ -90,7 +89,6 @@ public class PlayerMovement : MonoBehaviour
 
     void Jump()
     {
-        isJumping = true;
         rb2D.velocity = new Vector2(rb2D.velocity.x, jumpForce);
         animator.Jump();
     }
